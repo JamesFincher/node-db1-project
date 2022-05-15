@@ -5,7 +5,7 @@
 - Relational Databases
 - Writing Basic SQL Queries
 - Writing Basic Queries using Knex.js
-
+ 
 ## Instructions
 
 ### Task 1: Project Setup and Submission
