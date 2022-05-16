@@ -28,7 +28,16 @@ router.get('/:id', middle.checkAccountId, async (req, res, next) => {
   // res.json(data)
 })
 
-router.post('/', middle.checkAccountPayload, async (req, res, next) => {})
+router.post('/', middle.checkAccountPayload, middle.checkAccountNameUnique, async (req, res,next) => {
+  try{console.log('trying to make new account')
+    const newAccount = await model.create(req.body)
+  console.log('created')
+
+    res.status(201).json(newAccount)
+  }catch(err) {
+    next(err)
+  }
+})
 
 
 router.put('/:id', middle.checkAccountPayload, middle.checkAccountId, (req, res, next) => {
