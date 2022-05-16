@@ -1,3 +1,6 @@
+const model = require('./accounts-model')
+
+
 exports.checkAccountPayload = (req, res, next) => {
   // DO YOUR MAGIC
   // Note: you can either write "manual" validation logic
@@ -9,5 +12,12 @@ exports.checkAccountNameUnique = (req, res, next) => {
 }
 
 exports.checkAccountId = (req, res, next) => {
-  // DO YOUR MAGIC
+const id = req.params.id
+model.getById(id).then((account) => {
+  if(account){
+    next()
+  } else{
+    res.status(404).json({message:"account not found"})
+  }
+})
 }

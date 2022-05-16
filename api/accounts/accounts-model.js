@@ -1,8 +1,13 @@
+const { default: knex } = require('knex')
+const db = require('../../data/db-config')
+
 const getAll = () => {
+  return db('accounts')
   // DO YOUR MAGIC
 }
 
-const getById = id => {
+const getById = (id) => {
+  return db('accounts').where('id', id).first()
   // DO YOUR MAGIC
 }
 
