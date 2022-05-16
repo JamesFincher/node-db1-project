@@ -11,7 +11,7 @@ const getById = (id) => {
   // DO YOUR MAGIC
 }
 
-const create = account => {
+const create = ({ })=> {
   // DO YOUR MAGIC
 }
 
@@ -19,8 +19,9 @@ const updateById = (id, account) => {
   // DO YOUR MAGIC
 }
 
-const deleteById = id => {
-  // DO YOUR MAGIC
+const  deleteById =  (id) => { 
+  console.log('before', id)
+  return db('accounts').where('id', id).del()
 }
 
 module.exports = {

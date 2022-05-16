@@ -28,16 +28,29 @@ router.get('/:id', middle.checkAccountId, async (req, res, next) => {
   // res.json(data)
 })
 
-router.post('/', (req, res, next) => {
-  // DO YOUR MAGIC
-})
+router.post('/', middle.checkAccountPayload, async (req, res, next) => {
+  try{
+      const data = await model.create(req.body)
+      res.json(data)}
+      catch(err){
+        next(err)
+      }
+  }
+)
 
 router.put('/:id', (req, res, next) => {
   // DO YOUR MAGIC
 });
 
-router.delete('/:id', (req, res, next) => {
-  // DO YOUR MAGIC
+router.delete('/:id', middle.checkAccountId, async (req, res, next) => {
+try{
+  console.log("before model delete")
+  const data = await model.deleteById(req.params.id)
+  console.log("after model delete")
+
+  res.json(data)
+}
+catch{(err)=>{console.log(err)}}
 })
 
 router.use((err, req, res, next) => { // eslint-disable-line
