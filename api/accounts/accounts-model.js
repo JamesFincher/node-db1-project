@@ -11,7 +11,10 @@ const getById = (id) => {
   // DO YOUR MAGIC
 }
 
-const create = ({ })=> {
+const  create = async ({name, budget})=> {
+  const [id] = await db('accounts').insert({name, budget})
+  const newAccount = await module.getById(id)
+  return newAccount
   // DO YOUR MAGIC
 }
 
