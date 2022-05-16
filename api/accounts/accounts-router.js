@@ -40,8 +40,17 @@ router.post('/', middle.checkAccountPayload, middle.checkAccountNameUnique, asyn
 })
 
 
-router.put('/:id', middle.checkAccountPayload, middle.checkAccountId, (req, res, next) => {
-
+router.put('/:id', middle.checkAccountPayload, middle.checkAccountId, async (req, res, next) => {
+try{
+  const account = req.body
+  const id = req.params.id
+  model.updateById(id, account).then(result => {
+    res.status(200).json(result)
+  })
+}
+catch(err){
+  next(err)
+}
 });
 
 router.delete('/:id', middle.checkAccountId, async (req, res, next) => {
